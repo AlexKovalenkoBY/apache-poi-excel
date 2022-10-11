@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch LargeExcelReaderApp",
+            "request": "launch",
+            "mainClass": "com.roytuts.java.read.large.excel.file.apache.poi.LargeExcelReaderApp",
+            "projectName": "java-read-large-excel-file-apache-poi"
+        },
+        {
+            "type": "java",
+            "name": "Launch POI_SXXF_",
+            "request": "launch",
+            "mainClass": "com.roytuts.java.read.large.excel.file.apache.poi.POI_SXXF_",
+            "projectName": "java-read-large-excel-file-apache-poi"
+        }
+    ]
+}

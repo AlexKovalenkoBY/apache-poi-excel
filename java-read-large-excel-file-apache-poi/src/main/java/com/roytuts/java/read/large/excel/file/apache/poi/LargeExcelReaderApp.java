@@ -19,20 +19,20 @@ public class LargeExcelReaderApp {
 		String fileName = "ARMTEK_MAIN_40006905_202210041806.xlsx";
 		// readLargeExcelFile(fileName);
 		System.out.println("started");
+        long startTime = System.nanoTime();
 		
 		SaxEventUserModel saxEventUserModel = new SaxEventUserModel();
 		
-        long startTime = System.nanoTime();
 		saxEventUserModel.processSheets(fileName);
 		long estimatedTime = System.nanoTime() - startTime;
        
         System.out.println("estimatedTime: " + estimatedTime / 1_000_000_000.);
-		System.out.println("started V2");
-		startTime = System.nanoTime();
-		readLargeExcelFile(fileName);
-		estimatedTime = System.nanoTime() - startTime;
+		// System.out.println("started V2");
+		// startTime = System.nanoTime();
+		// readLargeExcelFile(fileName);
+		// estimatedTime = System.nanoTime() - startTime;
        
-        System.out.println("estimatedTime: " + estimatedTime / 1_000_000_000.);
+        // System.out.println("estimatedTime: " + estimatedTime / 1_000_000_000.);
 	}
 
 	// The following method will give error - OutOfMemoryError

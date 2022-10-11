@@ -24,9 +24,10 @@ public class SaxEventUserModel {
 		SharedStringsTable sst = (SharedStringsTable) r.getSharedStringsTable();
 		XMLReader parser = fetchSheetParser(sst);
 		Iterator<InputStream> sheets = r.getSheetsData();
+		int rowcount=0;
 		while (sheets.hasNext()) {
-			System.out.println("Processing new sheet:\n");
 			InputStream sheet = sheets.next();
+			System.out.println("Processing new sheet: ");
 			InputSource sheetSource = new InputSource(sheet);
 			parser.parse(sheetSource);
 			sheet.close();
@@ -59,6 +60,7 @@ public class SaxEventUserModel {
 			// c => cell
 			if (name.equals("c")) {
 				// Print the cell reference
+				
 				//System.out.print(attributes.getValue("r") + " - ");
 				// Figure out if the value is an index in the SST
 				String cellType = attributes.getValue("t");
