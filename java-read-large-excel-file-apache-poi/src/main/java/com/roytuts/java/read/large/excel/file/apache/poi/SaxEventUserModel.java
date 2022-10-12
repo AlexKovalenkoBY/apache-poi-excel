@@ -61,10 +61,10 @@ public class SaxEventUserModel {
 			if (name.equals("c")) {
 				// Print the cell reference
 				
-				//System.out.print(attributes.getValue("r") + " - ");
+				System.out.print(attributes.getValue("r") + " - ");
 				// Figure out if the value is an index in the SST
 				String cellType = attributes.getValue("t");
-				if (cellType != null && cellType.equals("s")) {
+				if (cellType != null && cellType.equals("si")) {
 					nextIsString = true;
 				} else {
 					nextIsString = false;
@@ -86,7 +86,7 @@ public class SaxEventUserModel {
 			// v => contents of a cell
 			// Output after we've seen the string contents
 			if (name.equals("v")) {
-				// System.out.println(lastContents);
+				 System.out.println(lastContents);
 			}
 		}
 

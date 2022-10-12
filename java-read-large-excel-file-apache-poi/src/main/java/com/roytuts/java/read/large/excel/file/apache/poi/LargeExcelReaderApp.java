@@ -16,7 +16,8 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 public class LargeExcelReaderApp {
 
 	public static void main(String[] args) throws Exception {
-		String fileName = "ARMTEK_MAIN_40006905_202210041806.xlsx";
+		// String fileName = "ARMTEK_MAIN_40006905_202210041806.xlsx";
+		String fileName = "Книга1.xlsx";
 		// readLargeExcelFile(fileName);
 		System.out.println("started");
         long startTime = System.nanoTime();

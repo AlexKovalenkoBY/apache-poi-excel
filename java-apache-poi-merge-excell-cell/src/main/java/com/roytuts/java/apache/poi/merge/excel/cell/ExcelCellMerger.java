@@ -1,4 +1,4 @@
-package com.roytuts.java.apache.poi.merge.excell.cell;
+package com.roytuts.java.apache.poi.merge.excel.cell;
 
 import java.io.File;
 import java.io.FileOutputStream;

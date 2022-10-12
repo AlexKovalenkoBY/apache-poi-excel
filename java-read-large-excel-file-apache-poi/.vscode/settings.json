@@ -1,4 +1,5 @@
 {
     "java.configuration.updateBuildConfiguration": "interactive",
-    "netbeans.javaSupport.enabled": true
+    "netbeans.javaSupport.enabled": false,
+    "editor.maxTokenizationLineLength": 20000
 }

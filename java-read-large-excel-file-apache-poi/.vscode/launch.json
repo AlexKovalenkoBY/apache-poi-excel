@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch StreamingReader1",
+            "request": "launch",
+            "mainClass": "com.roytuts.java.read.large.excel.file.apache.poi.StreamingReader1",
+            "projectName": "java-read-large-excel-file-apache-poi"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"
