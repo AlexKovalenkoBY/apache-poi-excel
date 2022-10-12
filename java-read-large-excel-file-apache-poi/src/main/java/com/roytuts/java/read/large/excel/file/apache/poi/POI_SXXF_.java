@@ -9,7 +9,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
-
+/*этот код работает, но workbook  создается 10-15 сек. это очень много */
 class POI_SXXF_ {
     public static void main(String[] args) throws Throwable {
         String fileName = "ARMTEK_MAIN_40006905_202210041806.xlsx";

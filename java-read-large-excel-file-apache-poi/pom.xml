@@ -17,11 +17,11 @@
 	<dependencies>
 
 		<!-- https://mvnrepository.com/artifact/com.github.pjfanning/excel-streaming-reader -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.github.pjfanning</groupId>
 			<artifactId>excel-streaming-reader</artifactId>
 			<version>4.0.3</version>
-		</dependency>
+		</dependency> -->
 
 		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
 		<dependency>
