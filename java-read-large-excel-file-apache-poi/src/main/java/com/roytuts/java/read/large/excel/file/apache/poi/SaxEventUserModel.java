@@ -26,7 +26,10 @@ public class SaxEventUserModel {
 		OPCPackage pkg = OPCPackage.open(filename);
 		XSSFReader r = new XSSFReader(pkg);
 		SharedStringsTable sst = (SharedStringsTable) r.getSharedStringsTable();
-		XMLReader parser = fetchSheetParser(sst);
+		//XMLReader parser = fetchSheetParser(sst);
+		XMLReader parser = XMLHelper.newXMLReader();
+		SheetHandler handler = new SheetHandler(sst);
+		parser.setContentHandler(handler);
 		Iterator<InputStream> sheets = r.getSheetsData();
 	
 		while (sheets.hasNext()) {
@@ -42,7 +45,7 @@ public class SaxEventUserModel {
 
 	public XMLReader fetchSheetParser(SharedStringsTable sst) throws SAXException, ParserConfigurationException {
 		XMLReader parser = XMLHelper.newXMLReader();
-		ContentHandler handler = new SheetHandler(sst);
+		SheetHandler handler = new SheetHandler(sst);
 		parser.setContentHandler(handler);
 		return parser;
 	}
@@ -50,9 +53,9 @@ public class SaxEventUserModel {
 	/**
 	 * See org.xml.sax.helpers.DefaultHandler javadocs
 	 */
-	private static class SheetHandler extends DefaultHandler {
-		public static ArrayList<String> elementObj ;//= new ArrayList<String>(); 
-		public static ArrayList<ArrayList<String>> sheetObj = new ArrayList<ArrayList<String>>();
+	private class SheetHandler extends DefaultHandler {
+		public  ArrayList<String> elementObj ;//= new ArrayList<String>(); 
+		public  ArrayList<ArrayList<String>> sheetObj = new ArrayList<ArrayList<String>>();
 
 		private SharedStringsTable sst;
 		private String lastContents;
