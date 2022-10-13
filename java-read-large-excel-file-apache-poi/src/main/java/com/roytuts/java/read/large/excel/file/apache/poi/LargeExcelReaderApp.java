@@ -24,14 +24,11 @@ public class LargeExcelReaderApp {
 		// readLargeExcelFile(fileName);
 		// Log.info("Started");
 		System.out.println("started");
-        long startTime = System.nanoTime();
-		
+        
 		SaxEventUserModel saxEventUserModel = new SaxEventUserModel();
 		
 		saxEventUserModel.processSheets(fileName);
-		long estimatedTime = System.nanoTime() - startTime;
-       
-        System.out.println("estimatedTime: " + estimatedTime / 1_000_000_000.);
+		
 		// System.out.println("started V2");
 		// startTime = System.nanoTime();
 		// readLargeExcelFile(fileName);

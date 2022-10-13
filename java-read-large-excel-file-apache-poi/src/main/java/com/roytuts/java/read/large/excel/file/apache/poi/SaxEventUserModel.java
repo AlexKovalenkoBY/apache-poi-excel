@@ -23,6 +23,7 @@ import org.xml.sax.helpers.DefaultHandler;
 public class SaxEventUserModel {
 
 	public void processSheets(String filename) throws Exception {
+		long startTime = System.nanoTime();
 		OPCPackage pkg = OPCPackage.open(filename);
 		XSSFReader r = new XSSFReader(pkg);
 		SharedStringsTable sst = (SharedStringsTable) r.getSharedStringsTable();
@@ -31,13 +32,16 @@ public class SaxEventUserModel {
 		SheetHandler handler = new SheetHandler(sst);
 		parser.setContentHandler(handler);
 		Iterator<InputStream> sheets = r.getSheetsData();
-	
+		
 		while (sheets.hasNext()) {
 			InputStream sheet = sheets.next();
 			System.out.println("Processing new sheet: ");
 			InputSource sheetSource = new InputSource(sheet);
 		parser.parse(sheetSource);
 			sheet.close();
+			long estimatedTime = System.nanoTime() - startTime;
+       
+        System.out.println("estimatedTime: " + estimatedTime / 1_000_000_000.);
 			System.out.println("sheet proceed");
 		}
 		pkg.close();
