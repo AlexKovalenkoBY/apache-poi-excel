@@ -13,12 +13,16 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 
+
+// import lombok.extern.slf4j.Slf4j;
+// @Slf4j // Подключаю логгер
 public class LargeExcelReaderApp {
 
 	public static void main(String[] args) throws Exception {
 		 String fileName = "ARMTEK_MAIN_40006905_202210041806.xlsx";
 		// String fileName = "Книга1.xlsx";
 		// readLargeExcelFile(fileName);
+		// Log.info("Started");
 		System.out.println("started");
         long startTime = System.nanoTime();
 		

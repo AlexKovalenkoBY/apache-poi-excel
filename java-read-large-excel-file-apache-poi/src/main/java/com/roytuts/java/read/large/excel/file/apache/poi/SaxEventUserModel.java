@@ -1,6 +1,7 @@
 package com.roytuts.java.read.large.excel.file.apache.poi;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -16,6 +17,9 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 
+// import lombok.extern.slf4j.Slf4j;
+
+
 public class SaxEventUserModel {
 
 	public void processSheets(String filename) throws Exception {
@@ -24,12 +28,12 @@ public class SaxEventUserModel {
 		SharedStringsTable sst = (SharedStringsTable) r.getSharedStringsTable();
 		XMLReader parser = fetchSheetParser(sst);
 		Iterator<InputStream> sheets = r.getSheetsData();
-		int rowcount=0;
+	
 		while (sheets.hasNext()) {
 			InputStream sheet = sheets.next();
 			System.out.println("Processing new sheet: ");
 			InputSource sheetSource = new InputSource(sheet);
-			parser.parse(sheetSource);
+		parser.parse(sheetSource);
 			sheet.close();
 			System.out.println("sheet proceed");
 		}
@@ -47,9 +51,13 @@ public class SaxEventUserModel {
 	 * See org.xml.sax.helpers.DefaultHandler javadocs
 	 */
 	private static class SheetHandler extends DefaultHandler {
+		public static ArrayList<String> elementObj ;//= new ArrayList<String>(); 
+		public static ArrayList<ArrayList<String>> sheetObj = new ArrayList<ArrayList<String>>();
+
 		private SharedStringsTable sst;
 		private String lastContents;
 		private boolean nextIsString;
+
 
 		private SheetHandler(SharedStringsTable sst) {
 			this.sst = sst;
@@ -58,13 +66,15 @@ public class SaxEventUserModel {
 		@Override
 		public void startElement(String uri, String localName, String name, Attributes attributes) throws SAXException {
 			// c => cell
+			if (name.equals("row")) {
+				elementObj = new ArrayList<String>();
+			}
 			if (name.equals("c")) {
 				// Print the cell reference
-				
-				// System.out.print(attributes.getValue("r") + " - ");
+				//System.out.print(attributes.getValue("r") + " - ");
 				// Figure out if the value is an index in the SST
 				String cellType = attributes.getValue("t");
-				if (cellType != null && cellType.equals("si")) {
+				if (cellType != null && cellType.equals("s")) {
 					nextIsString = true;
 				} else {
 					nextIsString = false;
@@ -80,12 +90,17 @@ public class SaxEventUserModel {
 			// Do now, as characters() may be called more than once
 			if (nextIsString) {
 				int idx = Integer.parseInt(lastContents.trim());
-				lastContents = sst.getItemAt(idx).getString().trim();
+				lastContents = sst.getItemAt(idx).getString();
 				nextIsString = false;
 			}
 			// v => contents of a cell
 			// Output after we've seen the string contents
 			if (name.equals("v")) {
+				// System.out.println(lastContents);
+				elementObj.add(lastContents);
+			}
+			if (name.equals("row")) {
+				sheetObj.add(elementObj);
 				//  System.out.println(lastContents);
 			}
 		}

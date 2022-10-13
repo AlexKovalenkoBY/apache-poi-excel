@@ -19,7 +19,7 @@ class POI_SXXF_ {
         SXSSFWorkbook wb = new SXSSFWorkbook(-1); // keep 100 rows in memory, exceeding rows will be flushed to disk
         Sheet sh = wb.createSheet();
         
-        Sheet sh2 = wb2.getSheetAt(0);
+        // Sheet sh2 = wb2.getSheetAt(0);
         int rownum =0;
         int celnum=0;
         long estimatedTime = System.nanoTime() - startTime;
