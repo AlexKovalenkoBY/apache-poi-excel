@@ -11,14 +11,13 @@ import org.apache.poi.util.XMLHelper;
 import org.apache.poi.xssf.eventusermodel.XSSFReader;
 import org.apache.poi.xssf.model.SharedStringsTable;
 import org.xml.sax.Attributes;
-import org.xml.sax.ContentHandler;
+
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 
 // import lombok.extern.slf4j.Slf4j;
-
 
 public class SaxEventUserModel {
 
@@ -27,21 +26,21 @@ public class SaxEventUserModel {
 		OPCPackage pkg = OPCPackage.open(filename);
 		XSSFReader r = new XSSFReader(pkg);
 		SharedStringsTable sst = (SharedStringsTable) r.getSharedStringsTable();
-		//XMLReader parser = fetchSheetParser(sst);
+		// XMLReader parser = fetchSheetParser(sst);
 		XMLReader parser = XMLHelper.newXMLReader();
 		SheetHandler handler = new SheetHandler(sst);
 		parser.setContentHandler(handler);
 		Iterator<InputStream> sheets = r.getSheetsData();
-		
+
 		while (sheets.hasNext()) {
 			InputStream sheet = sheets.next();
 			System.out.println("Processing new sheet: ");
 			InputSource sheetSource = new InputSource(sheet);
-		parser.parse(sheetSource);
+			parser.parse(sheetSource);
 			sheet.close();
 			long estimatedTime = System.nanoTime() - startTime;
-       
-        System.out.println("estimatedTime: " + estimatedTime / 1_000_000_000.);
+
+			System.out.println("estimatedTime: " + estimatedTime / 1_000_000_000.);
 			System.out.println("sheet proceed");
 		}
 		pkg.close();
@@ -58,13 +57,12 @@ public class SaxEventUserModel {
 	 * See org.xml.sax.helpers.DefaultHandler javadocs
 	 */
 	private class SheetHandler extends DefaultHandler {
-		public  ArrayList<String> elementObj ;//= new ArrayList<String>(); 
-		public  ArrayList<ArrayList<String>> sheetObj = new ArrayList<ArrayList<String>>();
+		public ArrayList<String> elementObj;// = new ArrayList<String>();
+		public ArrayList<ArrayList<String>> sheetObj = new ArrayList<ArrayList<String>>();
 
 		private SharedStringsTable sst;
 		private String lastContents;
 		private boolean nextIsString;
-
 
 		private SheetHandler(SharedStringsTable sst) {
 			this.sst = sst;
@@ -78,7 +76,7 @@ public class SaxEventUserModel {
 			}
 			if (name.equals("c")) {
 				// Print the cell reference
-				//System.out.print(attributes.getValue("r") + " - ");
+				// System.out.print(attributes.getValue("r") + " - ");
 				// Figure out if the value is an index in the SST
 				String cellType = attributes.getValue("t");
 				if (cellType != null && cellType.equals("s")) {
@@ -108,7 +106,7 @@ public class SaxEventUserModel {
 			}
 			if (name.equals("row")) {
 				sheetObj.add(elementObj);
-				//  System.out.println(lastContents);
+				// System.out.println(lastContents);
 			}
 		}
 

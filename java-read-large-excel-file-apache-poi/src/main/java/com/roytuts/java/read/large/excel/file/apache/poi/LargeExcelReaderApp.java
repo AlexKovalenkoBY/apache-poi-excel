@@ -19,7 +19,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 public class LargeExcelReaderApp {
 
 	public static void main(String[] args) throws Exception {
-		 String fileName = "ARMTEK_MAIN_40006905_202210041806.xlsx";
+		 String fileName = "bigFile.xlsx";
 		// String fileName = "Книга1.xlsx";
 		// readLargeExcelFile(fileName);
 		// Log.info("Started");
@@ -28,7 +28,7 @@ public class LargeExcelReaderApp {
 		SaxEventUserModel saxEventUserModel = new SaxEventUserModel();
 		
 		saxEventUserModel.processSheets(fileName);
-		
+	
 		// System.out.println("started V2");
 		// startTime = System.nanoTime();
 		// readLargeExcelFile(fileName);
